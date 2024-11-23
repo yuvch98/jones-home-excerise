@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer';
 
 (async () => {
   // Launch the browser
-  const browser = await puppeteer.launch({ headless: false }); // Launch browser in non-headless mode for visibility
+  const browser = await puppeteer.launch(); 
   const page = await browser.newPage();
 
   // Navigate to the URL
@@ -14,10 +14,10 @@ import puppeteer from 'puppeteer';
   await page.setViewport({ width: 1080, height: 1024 });
 
   // Fill in the form fields. # stands for ID css locator.
-  await page.type('#name', 'Yuval Chabra', {delay: 100});
-  await page.type('#email', 'yuvalchabra100@gmail.com', {delay: 100});
-  await page.type('#phone', '+972-52-330-0695', {delay: 100});
-  await page.type('#company', 'Future Jones Employee', {delay: 100});
+  await page.type('#name', 'Yuval Chabra');
+  await page.type('#email', 'yuvalchabra100@gmail.com');
+  await page.type('#phone', '+972-52-330-0695');
+  await page.type('#company', 'Future Jones Employee');
 
   // Change the Number of Employees dropdown
   await page.select('#employees', '51-500');
