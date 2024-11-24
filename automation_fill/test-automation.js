@@ -51,7 +51,7 @@ function check_user_validation(user){
     }
   }
   
-  export function run_tests(user){
+  export function run(user){
     (async () => {
       const {browser, page} = await check_launch()
       console.log("Checking user validation...")
