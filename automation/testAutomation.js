@@ -10,7 +10,7 @@ import {
     user,
     url,
     selectors
-} from '../const.js'
+} from '../utils/const.js'
 
 import validator from 'validator';
 
