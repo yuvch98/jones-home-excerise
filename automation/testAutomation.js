@@ -53,10 +53,11 @@ function check_user_validation(){
   }
   
   export async function run() {
-    try {
-      // Launch browser and navigate to URL
-      const { browser, page } = await check_launch();
+    
+    // Launch browser and navigate to URL
+    const { browser, page } = await check_launch();
       
+    try {
       console.log("Checking user validation...");
       check_user_validation(user); // Validate the user object
       console.log("User has been validated successfully");
@@ -76,10 +77,13 @@ function check_user_validation(){
       await takeScreenshot(page, 'screenshots/thank-you-page.jpg');
       console.log("Successfully reached the thank-you page!");
   
-      // Close the browser
-      await browser.close();
     } catch (error) {
       console.error("An error occurred during the run:", error);
     }
+      finally {
+        
+      // Close the browser
+      await browser.close();
+      }
   }
   
