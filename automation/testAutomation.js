@@ -20,8 +20,6 @@ async function check_launch(){
     const { browser, page } = await launchBrowser();
   
     try {
-      // Test Case: Fill the form and navigate to the thank-you page
-      
       // Navigate to the form URL
       await navigateToUrl(page, url);
 
@@ -36,7 +34,6 @@ async function check_launch(){
 
 function check_user_validation(){
     try {
-      // Test Case: Fill the form and navigate to the thank-you page
       if (user['name'].length == 0){
           throw new Error("name must consist of letters")
       }
