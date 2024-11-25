@@ -4,20 +4,24 @@ import {
     fillForm,
     takeScreenshot,
     submitForm,
-    pageTitle,
+    pageTitle
+  } from './formAutomation.js';
+import {
     user,
     url,
-  } from './form-automation.js';
+    selectors
+} from '../const.js'
+
 import validator from 'validator';
 
 async function check_launch(){
-
+    console.log("Starting Test: Page redirection to given url");
+  
     const { browser, page } = await launchBrowser();
   
     try {
       // Test Case: Fill the form and navigate to the thank-you page
-      console.log("Starting Test: Page redirection to given url");
-  
+      
       // Navigate to the form URL
       await navigateToUrl(page, url);
 
@@ -30,7 +34,7 @@ async function check_launch(){
     }
 }
 
-function check_user_validation(user){
+function check_user_validation(){
     try {
       // Test Case: Fill the form and navigate to the thank-you page
       if (user['name'].length == 0){
@@ -51,27 +55,34 @@ function check_user_validation(user){
     }
   }
   
-  export function run(user){
-    (async () => {
-      const {browser, page} = await check_launch()
-      console.log("Checking user validation...")
-      check_user_validation(user)
-      console.log("User has been validated successfully")
-      // Fill in the form
-      console.log("Filling form...")
-      await fillForm(page, user);
-      console.log("form has been filled successfully")
-      // Take a screenshot before submission
-      await takeScreenshot(page, 'screenshots/form-page.jpg');
-      console.log("Moving to thank you page...")
-      // Submit the form
-      await submitForm(page);
+  export async function run() {
+    try {
+      // Launch browser and navigate to URL
+      const { browser, page } = await check_launch();
+      
+      console.log("Checking user validation...");
+      check_user_validation(user); // Validate the user object
+      console.log("User has been validated successfully");
   
-      // Verify successful navigation and take a screenshot of the thank-you page
+      // Fill the form and take a screenshot
+      console.log("Filling form...");
+      await fillForm(page, user, selectors);
+      console.log("Form has been filled successfully");
+      await takeScreenshot(page, 'screenshots/form-page.jpg');
+  
+      // Submit the form
+      console.log("Moving to thank you page...");
+      await submitForm(page, selectors);
+  
+      // Verify navigation and take a final screenshot
       await pageTitle(page);
       await takeScreenshot(page, 'screenshots/thank-you-page.jpg');
-      console.log("Test Passed: Successfully reached the thank-you page!");
+      console.log("Successfully reached the thank-you page!");
+  
+      // Close the browser
       await browser.close();
-
-    })();
+    } catch (error) {
+      console.error("An error occurred during the run:", error);
+    }
   }
+  
