@@ -8,7 +8,6 @@ This project is for automating the process of filling out and submitting a form 
 - [Usage](#usage)
 - [Test Cases](#test-cases)
 - [Technologies](#technologies)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
@@ -32,7 +31,7 @@ To get started with this project, follow these steps:
 
 1. **Run **
 
-    To run the test suite, execute the following command:
+    To run the automation, execute the following command:
 
     ```bash
     node jones-home-exercise/main.js
@@ -57,7 +56,7 @@ To get started with this project, follow these steps:
 
 ## Test Cases
 
-The suite includes several test cases for validating form fields:
+The automation includes several test cases for validating form fields:
 
 - **Form URL Navigation**: Ensure the form URL loads correctly.
 - **User Validation**: Validate that the user fields (name, email, phone, company) are not empty 
